@@ -3,11 +3,14 @@
 namespace App\Http\Services\Book;
 
 use App\Models\Book;
+use Illuminate\Support\Arr;
 
 class Index
 {
-    public function __invoke()
+    public function __invoke(array $params = [])
     {
-        return Book::get();
+        $searchTerm = Arr::get($params, 'search', '');
+
+        return Book::where('title', 'like', '%'.$searchTerm.'%')->get();
     }
 }
