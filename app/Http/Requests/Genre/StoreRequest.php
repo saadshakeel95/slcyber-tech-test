@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Genre;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,11 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'author' => 'required|string',
-            'rating' => 'required|integer|min:1|max:10',
-            'genres' => 'nullable|array',
-            'genres.*' => 'integer|exists:genres,id',
+            'name' => 'required|string',
         ];
     }
 }

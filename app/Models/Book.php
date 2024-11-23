@@ -12,4 +12,9 @@ class Book extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'book_genre');
+    }
 }

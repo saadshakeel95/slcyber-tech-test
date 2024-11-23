@@ -3,6 +3,7 @@
 namespace App\Http\Services\Book;
 
 use App\Models\Book;
+use Illuminate\Support\Arr;
 
 class Update
 {
@@ -13,6 +14,9 @@ class Update
             'author' => $data['author'] ?? $book->author,
             'rating' => $data['rating'] ?? $book->rating,
         ]);
+
+        // Attach genres to the book
+        $book->genres()->sync(Arr::get($data, 'genres', []));
 
         return $book;
     }
