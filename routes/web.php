@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/edit', function () {
-    return view('edit');
+Route::get('/edit/{bookId}', function (string $bookId) {
+    return view('edit', ['bookId' => $bookId]);
 });
 
 

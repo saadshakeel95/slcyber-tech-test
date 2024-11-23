@@ -6,7 +6,9 @@
     </head>
     <body>
         <div id="app">
-            <edit-book></edit-book>
+            <edit-book
+                :book-id="{{ $bookId }}"
+            ></edit-book>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>
