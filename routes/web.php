@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/edit', function () {
-    return view('edit');
+Route::get('/edit/{id}', function ($id) {
+    return view('edit',compact('id'));
 });
 
 

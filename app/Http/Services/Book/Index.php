@@ -7,8 +7,12 @@ use App\Models\Book;
 
 class Index
 {
-    public function __invoke()
+    public function __invoke($request)
     {
-        return Book::query();
+        $data=Book::query();
+        if (!empty($request->search)) {
+            $data=$data->where('title', 'like', '%' . $request->search . '%');
+        }
+        return $data->get();
     }
 }

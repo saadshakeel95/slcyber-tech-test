@@ -13,7 +13,6 @@ class Update
             'author' => $data['author'] ?? $book->author,
             'rating' => $data['rating'] ?? $book->rating,
         ]);
-
         return $book;
     }
 }

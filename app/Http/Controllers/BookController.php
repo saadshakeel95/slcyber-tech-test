@@ -16,13 +16,10 @@ class BookController extends Controller
 {
     public function index(IndexRequest $request, Index $index)
     {
-        $index= $index();
-        if (!empty($request->search)) {
-            $data=$index->where('title', 'like', '%' . $request->search . '%');
-        }
+        $data = $index($request);
         return response()->json([
             'message' => 'Successfully fetched the books.',
-            'data' => $index->get()
+            'data' => $data
         ]);
     }
 
@@ -36,10 +33,14 @@ class BookController extends Controller
         ]);
     }
 
-    public function update(UpdateRequest $request, Update $update, Book $bookToUpdate)
+    public function show($id)
     {
-        $updatedBook = $update($request->validated(), $bookToUpdate);
-
+        $book= Book::findOrFail($id);
+        return response()->json($book);
+    }
+    public function update(UpdateRequest $request, Update $update, Book $book)
+    {
+        $updatedBook = $update($request->validated(), $book);
         return response()->json([
             'message' => 'Successfully updated the book.',
             'data' => $updatedBook

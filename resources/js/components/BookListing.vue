@@ -29,7 +29,7 @@
           <td class="border p-2">{{ book.author }}</td>
           <td class="border p-2">{{ book.rating }}</td>
           <td class="border p-2">
-            <a href="#" class="text-blue-500">Edit</a> | 
+            <a href="#" v-on:click="editBook(book.id)" class="text-blue-500">Edit</a> | 
             <a href="#" class="text-red-500">Delete</a>
           </td>
         </tr>
@@ -54,7 +54,11 @@ export default {
       });
       this.books = response.data;
     },
+    editBook(Id){
+      window.location.href = "edit/"+Id;
+  }
   },
+ 
   created() {
     this.fetchBooks();
   },
