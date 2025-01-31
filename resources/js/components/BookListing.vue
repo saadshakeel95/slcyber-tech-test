@@ -29,8 +29,8 @@
           <td class="border p-2">{{ book.author }}</td>
           <td class="border p-2">{{ book.rating }}</td>
           <td class="border p-2">
-            <a href="#" v-on:click="editBook(book.id)" class="text-blue-500">Edit</a> | 
-            <a href="#" class="text-red-500">Delete</a>
+            <a href="javascript:void(0)" @click="editBook(book.id)" class="text-blue-500">Edit</a> | 
+            <a href="javascript:void(0)" @click="deleteBook(book.id)" class="text-red-500">Delete</a>
           </td>
         </tr>
       </tbody>
@@ -54,9 +54,18 @@ export default {
       });
       this.books = response.data;
     },
-    editBook(Id){
-      window.location.href = "edit/"+Id;
-  }
+    editBook(id){
+      window.location.href = "edit/"+ id;
+  },
+  deleteBook(id){
+            if(confirm("Are you sure to delete this book ?")){
+                axios.delete(`/api/books/${id}`).then(response=>{
+                 this.fetchBooks();
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }
+        }
   },
  
   created() {

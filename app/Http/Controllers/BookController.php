@@ -50,7 +50,6 @@ class BookController extends Controller
     public function destroy(DestroyRequest $request, Destroy $destroy, Book $book)
     {
         $destroy($book);
-
         return response()->json([
             'message' => 'Successfully deleted the book.',
         ]);
