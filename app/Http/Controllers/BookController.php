@@ -16,9 +16,13 @@ class BookController extends Controller
 {
     public function index(IndexRequest $request, Index $index)
     {
+        $index= $index();
+        if (!empty($request->search)) {
+            $data=$index->where('title', 'like', '%' . $request->search . '%');
+        }
         return response()->json([
             'message' => 'Successfully fetched the books.',
-            'data' => $index()
+            'data' => $index->get()
         ]);
     }
 
