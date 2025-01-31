@@ -1,8 +1,11 @@
 <template>
    <div>
-    <h1 class="text-center text-2xl font-bold my-4 text-orange-500">Book Shop</h1>
-    <p class="text-center">Cupcake ipsum dolor sit amet croissant...</p>
-
+    <div class="bg-gray-800 pt-8 pb-20">
+            <div class="w-9/12 text-center mr-auto ml-auto -mt-0 mb-0">
+            <h1 class="text-orange text-5xl p-10">Book Shop</h1>
+            <p class="w-9/12 mr-auto ml-auto -mt-0 mb-0 text-white">Cupcake ipsum dolor sit amet croissant. I love topping candy canes sweet roll croissant caramels. Soufflé macaroon liquorice chocolate tart I love.</p>
+        </div>
+    </div>
     <input
       type="text"
       v-model="searchQuery"
