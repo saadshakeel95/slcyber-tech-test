@@ -20,3 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('/books', 'BookController');
+Route::post('/genres', 'BookController@storeGenre');
+Route::post('/books/{id}/genres', 'BookController@assignGenresToBook');
+
+

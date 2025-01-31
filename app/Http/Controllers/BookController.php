@@ -6,10 +6,14 @@ use App\Http\Requests\Book\DestroyRequest;
 use App\Http\Requests\Book\IndexRequest;
 use App\Http\Requests\Book\StoreRequest;
 use App\Http\Requests\Book\UpdateRequest;
+use App\Http\Requests\Genre\StoreRequest as GenreStoreRequest;
+use App\Http\Requests\Genre\AssignBookRequest;
 use App\Http\Services\Book\Destroy;
 use App\Http\Services\Book\Index;
 use App\Http\Services\Book\Store;
 use App\Http\Services\Book\Update;
+
+use App\Models\Genre;
 use App\Models\Book;
 
 class BookController extends Controller
@@ -54,4 +58,25 @@ class BookController extends Controller
             'message' => 'Successfully deleted the book.',
         ]);
     }
+    public function storeGenre(GenreStoreRequest $request, Genre $genre)
+    {
+        $genre = $genre->create($request);
+
+        return response()->json([
+           'message' => 'Genre successfully stored.',
+           'data' => $book
+       ]);
+   
+    }
+    public function assignGenresToBook(AssignBookRequest $request, $bookId)
+    {
+        $request->validate();
+
+        $book = Book::findOrFail($bookId);
+        $book->genres()->sync($request->genre_ids);
+
+        return response()->json(['message' => 'Genres assigned successfully']);
+    }
+
+    
 }
